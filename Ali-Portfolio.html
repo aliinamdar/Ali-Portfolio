@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Mohammed Ali Inamdar - AI/ML Software Engineer | AWS Certified | Generative AI">
+    <title>Mohammed Ali Inamdar - Software Engineer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #00d4ff;
+            --secondary: #ff006e;
+            --accent: #8338ec;
+            --text: #ffffff;
+            --text-secondary: #b0b0b0;
+            --bg-dark: #0a0e27;
+            --bg-darker: #050812;
+            --bg-card: rgba(255, 255, 255, 0.05);
+            --border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--bg-darker) 0%, #1a1f3a 50%, var(--bg-darker) 100%);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Animated background elements */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, rgba(0, 212, 255, 0.1) 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(50px, 50px) rotate(180deg); }
+        }
+
+        /* Navigation */
+        nav {
+            position: sticky;
+            top: 0;
+            background: rgba(10, 14, 39, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            cursor: pointer;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            padding: 8rem 2rem;
+            text-align: center;
+            z-index: 1;
+        }
+
+        .hero-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .hero-avatar {
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 2rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            box-shadow: 0 0 60px rgba(0, 212, 255, 0.3);
+            animation: pulse-glow 2s ease-in-out infinite;
+            position: relative;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 60px rgba(0, 212, 255, 0.3); }
+            50% { box-shadow: 0 0 90px rgba(0, 212, 255, 0.6); }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero .title {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .hero .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .btn {
+            padding: 0.9rem 2.2rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: inherit;
+            transition: left 0.3s;
+            z-index: -1;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: var(--bg-dark);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.5);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(0, 212, 255, 0.1);
+            transform: translateY(-3px);
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-info a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s;
+        }
+
+        .contact-info a:hover {
+            color: var(--secondary);
+            transform: translateX(5px);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        section {
+            padding: 6rem 0;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+        }
+
+        h2::before {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(255, 0, 110, 0.1));
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: -1;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.2);
+        }
+
+        .project-card:hover::before {
+            opacity: 1;
+        }
+
+        .project-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .project-card .subtitle {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .project-card p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .tech-badge {
+            display: inline-block;
+            background: rgba(0, 212, 255, 0.1);
+            color: var(--primary);
+            padding: 0.35rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            transition: all 0.3s;
+        }
+
+        .tech-badge:hover {
+            background: rgba(0, 212, 255, 0.2);
+            border-color: var(--primary);
+            transform: scale(1.05);
+        }
+
+        /* Skills Section */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .skill-category {
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s;
+        }
+
+        .skill-category:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .skill-category h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+        }
+
+        .skill-item {
+            background: rgba(0, 212, 255, 0.05);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text);
+            transition: all 0.3s;
+        }
+
+        .skill-item:hover {
+            background: rgba(0, 212, 255, 0.15);
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        /* Experience Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+            margin-top: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--primary), var(--secondary));
+        }
+
+        .timeline-item {
+            margin-bottom: 2.5rem;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.3rem;
+            top: 0.5rem;
+            width: 12px;
+            height: 12px;
+            background: var(--bg-dark);
+            border: 3px solid var(--primary);
+            border-radius: 50%;
+        }
+
+        .timeline-item h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.3rem;
+            color: var(--text);
+        }
+
+        .timeline-item .company {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-item .date {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Education Cards */
+        .edu-card {
+            background: var(--bg-card);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--primary);
+            margin-bottom: 1.5rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s;
+        }
+
+        .edu-card:hover {
+            transform: translateX(5px);
+            border-left-color: var(--secondary);
+        }
+
+        .edu-card h3 {
+            color: var(--text);
+            margin-bottom: 0.5rem;
+        }
+
+        .edu-card .institution {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, rgba(5, 8, 18, 0.8), rgba(10, 14, 39, 0.8));
+            border-top: 1px solid var(--border-color);
+            padding: 3rem 2rem;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            margin-top: 4rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .social-links a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .social-links a:hover {
+            color: var(--secondary);
+            transform: translateY(-3px);
+        }
+
+        footer p {
+            color: var(--text-secondary);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.8rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">MAI</div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-avatar">👨‍💻</div>
+            <h1>Mohammed Ali Inamdar</h1>
+            <p class="title">AI/ML Software Engineer | AWS Certified | Generative AI Specialist</p>
+            <p class="subtitle">
+                Building innovative solutions with cutting-edge AI, cloud architecture, and enterprise mobile applications.<br>
+                4+ years of experience delivering scalable solutions.
+            </p>
+            <div class="cta-buttons">
+                <a href="#projects" class="btn btn-primary">View My Work</a>
+                <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+            </div>
+            <div class="contact-info">
+                <a href="mailto:mohammedaliinamdar@gmail.com">📧 Email</a>
+                <a href="tel:+919922210716">📱 +91-9922210716</a>
+                <a href="https://linkedin.com/in/mohammedaliinamdar" target="_blank">💼 LinkedIn</a>
+                <a href="https://github.com/aliinamdar" target="_blank">🐙 GitHub</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="container">
+        <h2>About Me</h2>
+        <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-secondary); max-width: 800px; margin-top: 2rem;">
+            I'm a passionate AI/ML Software Engineer with 4+ years of experience building production-grade enterprise solutions. 
+            My expertise spans Generative AI, Cloud Architecture, Android Development, and IoT systems. 
+            I'm AWS Certified in Generative AI and have a proven track record of delivering scalable applications that solve real-world problems.
+        </p>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="container">
+        <h2>Featured Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <h3>airCloudGo Enterprise IoT Platform</h3>
+                <p class="subtitle">HVAC Systems Remote Control</p>
+                <p>Built scalable Android platform for remote control of HVAC systems with 35% performance improvement using Jetpack Compose + MVVM.</p>
+                <div class="tech-stack">
+                    <span class="tech-badge">Kotlin</span>
+                    <span class="tech-badge">Android</span>
+                    <span class="tech-badge">MQTT</span>
+                    <span class="tech-badge">KMP</span>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <h3>BMW BI AI Assistant</h3>
+                <p class="subtitle">RAG-Based Enterprise Intelligence</p>
+                <p>Built RAG system over 10M+ enterprise records with AWS Bedrock and OpenAI integration for intelligent querying.</p>
+                <div class="tech-stack">
+                    <span class="tech-badge">RAG</span>
+                    <span class="tech-badge">AWS Bedrock</span>
+                    <span class="tech-badge">OpenAI</span>
+                    <span class="tech-badge">Vector Search</span>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <h3>Aircraft Logs Digitization</h3>
+                <p class="subtitle">OCR + Generative AI</p>
+                <p>Automated extraction of handwritten aircraft logs using AWS Textract and RAG-based correction with semantic search.</p>
+                <div class="tech-stack">
+                    <span class="tech-badge">AWS Textract</span>
+                    <span class="tech-badge">OCR</span>
+                    <span class="tech-badge">ChromaDB</span>
+                    <span class="tech-badge">LLM</span>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <h3>Mech Lens</h3>
+                <p class="subtitle">Vehicle Damage Detection AI</p>
+                <p>Computer vision system for detecting vehicle damage, classifying damage types, and generating repair insights using GPT.</p>
+                <div class="tech-stack">
+                    <span class="tech-badge">OpenCV</span>
+                    <span class="tech-badge">Computer Vision</span>
+                    <span class="tech-badge">GPT</span>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <h3>BMW OSB-IVR Voice Bot</h3>
+                <p class="subtitle">Conversational AI for Bookings</p>
+                <p>Voice-based intelligent assistant for handling BMW car service bookings with natural language interactions.</p>
+                <div class="tech-stack">
+                    <span class="tech-badge">OpenAI</span>
+                    <span class="tech-badge">Voice AI</span>
+                    <span class="tech-badge">NLP</span>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <h3>Cloud-Native Backend Services</h3>
+                <p class="subtitle">Scalable AWS Infrastructure</p>
+                <p>Designed highly available backend services using Lambda, OpenSearch, Kubernetes supporting millions of operations.</p>
+                <div class="tech-stack">
+                    <span class="tech-badge">AWS Lambda</span>
+                    <span class="tech-badge">Kubernetes</span>
+                    <span class="tech-badge">Docker</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="container">
+        <h2>Skills & Expertise</h2>
+        <div class="skills-container">
+            <div class="skill-category">
+                <h3>🤖 AI/ML & Generative AI</h3>
+                <div class="skill-list">
+                    <span class="skill-item">RAG Systems</span>
+                    <span class="skill-item">LLM Integration</span>
+                    <span class="skill-item">Vector Embeddings</span>
+                    <span class="skill-item">Fine-tuning</span>
+                    <span class="skill-item">Agentic AI</span>
+                    <span class="skill-item">LangChain</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3>📱 Mobile Development</h3>
+                <div class="skill-list">
+                    <span class="skill-item">Kotlin</span>
+                    <span class="skill-item">Android</span>
+                    <span class="skill-item">Jetpack Compose</span>
+                    <span class="skill-item">KMP</span>
+                    <span class="skill-item">Flutter</span>
+                    <span class="skill-item">iOS</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3>☁️ Cloud & Backend</h3>
+                <div class="skill-list">
+                    <span class="skill-item">AWS (Certified)</span>
+                    <span class="skill-item">Lambda</span>
+                    <span class="skill-item">EC2</span>
+                    <span class="skill-item">Bedrock</span>
+                    <span class="skill-item">Docker</span>
+                    <span class="skill-item">Kubernetes</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3>🔧 Programming</h3>
+                <div class="skill-list">
+                    <span class="skill-item">Python</span>
+                    <span class="skill-item">Kotlin</span>
+                    <span class="skill-item">Java</span>
+                    <span class="skill-item">Swift</span>
+                    <span class="skill-item">C/C++</span>
+                    <span class="skill-item">JavaScript</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3>⚡ IoT & Real-time</h3>
+                <div class="skill-list">
+                    <span class="skill-item">MQTT</span>
+                    <span class="skill-item">BLE</span>
+                    <span class="skill-item">Wi-Fi</span>
+                    <span class="skill-item">UDP</span>
+                    <span class="skill-item">WebSockets</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3>🎯 Methodologies</h3>
+                <div class="skill-list">
+                    <span class="skill-item">Agile</span>
+                    <span class="skill-item">Scrum</span>
+                    <span class="skill-item">MLOps</span>
+                    <span class="skill-item">System Design</span>
+                    <span class="skill-item">CI/CD</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="container">
+        <h2>Professional Experience</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <h3>Software Engineer</h3>
+                <p class="company">Austrax Technologies India Pvt. Ltd. (Silicon Stack)</p>
+                <p class="date">February 2022 – Present | Pune, India</p>
+                <p>
+                    Developed production-grade mobile applications, led Generative AI initiatives in R&D, 
+                    built scalable AWS services improving system performance, and implemented real-time communication protocols.
+                </p>
+            </div>
+
+            <div class="timeline-item">
+                <h3>iOS Developer</h3>
+                <p class="company">muVerity Consultancy Services</p>
+                <p class="date">June 2021 – December 2021 | Pune, India</p>
+                <p>Developed native iOS applications with focus on user experience and performance optimization.</p>
+            </div>
+        </div>
+
+        <h2 style="margin-top: 3rem;">Education & Certifications</h2>
+        <div>
+            <div class="edu-card">
+                <h3>Master of Technology in Data Science</h3>
+                <p class="institution">Pune Institute of Computer Technology</p>
+            </div>
+
+            <div class="edu-card">
+                <h3>Bachelor of Engineering in Computer Engineering</h3>
+                <p class="institution">Savitribai Phule Pune University</p>
+            </div>
+
+            <div class="edu-card">
+                <h3>AWS Certified Generative AI Developer – Professional</h3>
+                <p class="institution">Amazon Web Services</p>
+            </div>
+
+            <div class="edu-card">
+                <h3>Microsoft Certified – Azure Fundamentals</h3>
+                <p class="institution">Microsoft</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="container">
+        <h2>Let's Connect</h2>
+        <p style="font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 2rem; max-width: 600px;">
+            I'm interested in discussing new projects and opportunities. Let's collaborate and build something amazing together!
+        </p>
+        <div class="cta-buttons">
+            <a href="mailto:mohammedaliinamdar@gmail.com" class="btn btn-primary">Send Email</a>
+            <a href="https://linkedin.com/in/mohammedaliinamdar" class="btn btn-secondary" target="_blank">Connect on LinkedIn</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="social-links">
+            <a href="mailto:mohammedaliinamdar@gmail.com">📧 Email</a>
+            <a href="https://linkedin.com/in/mohammedaliinamdar" target="_blank">💼 LinkedIn</a>
+            <a href="https://github.com/aliinamdar" target="_blank">🐙 GitHub</a>
+            <a href="tel:+919922210716">📱 Phone</a>
+        </div>
+        <p>&copy; 2025 Mohammed Ali Inamdar. All rights reserved.</p>
+        <p style="margin-top: 1rem; font-size: 0.9rem;">Crafted with passion | Modern UI Design | Deployed on GitHub Pages</p>
+    </footer>
+</body>
+</html>
